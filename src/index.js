@@ -53,7 +53,7 @@ import Spotlight from './components/Spotlight/Spotlight';
 import SpotlightContext from './components/Spotlight/SpotlightContext';
 import SpotlightOverlay from './components/Spotlight/SpotlightOverlay';
 import CustomSingleSelectEditableRenderer from './components/field-renderers/CustomSingleSelectEditableRenderer';
-import '@atlaskit/css-reset/dist/bundle.css';
+// import '@atlaskit/css-reset/dist/bundle.css';
 
 export {
     Button,
