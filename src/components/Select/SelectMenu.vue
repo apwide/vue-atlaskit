@@ -89,6 +89,11 @@
                 }, 0);
             }
         },
+        beforeDestroy() {
+            if (this.appendToBody) {
+                this.$el.remove();
+            }
+        },
         methods: {
             onOptionSelected(option) {
                 this.$emit('option-selected', option);

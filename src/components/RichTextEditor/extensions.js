@@ -24,7 +24,7 @@ import Media from './custom-extensions/nodes/Media';
 import Panel from './custom-extensions/nodes/Panel';
 import BlockCard from './custom-extensions/nodes/BlockCard';
 import Status from './custom-extensions/nodes/Status';
-import Blockquote from './custom-extensions/nodes/Blockqoute';
+/* import Blockquote from './custom-extensions/nodes/Blockqoute'; */
 import BodiedExtension from './custom-extensions/nodes/BodiedExtension';
 import Emoji from './custom-extensions/nodes/Emoji';
 import LayoutColumn from './custom-extensions/nodes/LayoutColumn';
@@ -91,7 +91,7 @@ export const extensions = [
     new SubSup(),
     new Link(),
     new TypeAheadQuery(),
-    new Blockquote(),
+    /* new Blockquote(), */
     new Emoji(),
     new LayoutColumn(),
     new TableCell(),
