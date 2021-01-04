@@ -19,6 +19,7 @@
     import ColorCard from './ColorCard';
     import Popup from '../common/Popup';
 
+    const DefaultColors = ['#000', '#0052CC', '#172B4D', '#FF5630', '#FFAB00', '#36B37E', '#00B8D9', '#6554C0'];
     export default {
         name: 'ColorPicker',
         components: { ColorCard, Popup },
@@ -26,11 +27,14 @@
             value: {
                 type: String,
                 default: '#000'
+            },
+            colors: {
+                type: Array,
+                default: () => DefaultColors
             }
         },
         data() {
             return {
-                colors: ['#000', '#0052CC', '#172B4D', '#FF5630', '#FFAB00', '#36B37E', '#00B8D9', '#6554C0'],
                 open: false
             };
         },
