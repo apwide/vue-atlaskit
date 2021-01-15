@@ -26,7 +26,7 @@
         props: {
             value: {
                 type: String,
-                default: '#000'
+                default: '#DFE1E6'
             },
             colors: {
                 type: Array,
