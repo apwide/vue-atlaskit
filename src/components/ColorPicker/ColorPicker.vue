@@ -1,6 +1,6 @@
 <template>
     <div ref="dropdown-container" class="color-picker">
-        <button type="button" @click="onTriggerClick">
+        <button type="button" :style="{cursor: this.editable ? 'pointer' : 'default'}" @click="onTriggerClick">
             <div class="color" :style="style"/>
         </button>
         <Popup :is-open="open" offset="0,8"
@@ -19,18 +19,26 @@
     import ColorCard from './ColorCard';
     import Popup from '../common/Popup';
 
+    const DefaultColors = ['#000', '#0052CC', '#172B4D', '#FF5630', '#FFAB00', '#36B37E', '#00B8D9', '#6554C0'];
     export default {
         name: 'ColorPicker',
         components: { ColorCard, Popup },
         props: {
             value: {
                 type: String,
-                default: '#000'
+                default: '#DFE1E6'
+            },
+            colors: {
+                type: Array,
+                default: () => DefaultColors
+            },
+            editable: {
+                type: Boolean,
+                default: true
             }
         },
         data() {
             return {
-                colors: ['#000', '#0052CC', '#172B4D', '#FF5630', '#FFAB00', '#36B37E', '#00B8D9', '#6554C0'],
                 open: false
             };
         },
@@ -49,7 +57,9 @@
         },
         methods: {
             onTriggerClick() {
-                this.open = !this.open;
+                if (this.editable) {
+                    this.open = !this.open;
+                }
             },
             onColorSelected(color) {
                 this.selected = color;
@@ -67,7 +77,6 @@ button {
     height: 30px;
     box-sizing: border-box;
     background-color: transparent;
-    cursor: pointer;
     border: 2px solid transparent;
     border-radius: 6px;
     transition: border-color 0.15s cubic-bezier(0.47, 0.03, 0.49, 1.38) 0s;

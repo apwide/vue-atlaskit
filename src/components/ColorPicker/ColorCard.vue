@@ -1,7 +1,7 @@
 <template>
     <div class="card-wrapper" @click="onClick">
         <div class="outline">
-            <div class="card" :style="styles">
+            <div class="card" :data-cy-color="color" :style="styles">
                 <EditorDoneIcon v-if="selected === color" primary-color="#fff"/>
             </div>
         </div>

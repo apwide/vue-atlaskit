@@ -2,20 +2,32 @@
     <InlineEdit v-if="editable"
                 :value="value"
                 :confirm="confirm"
+                :icon="icon"
                 @save-requested="onSaveRequested">
         <Select slot="editor" slot-scope="props"
                 :value="props.value"
-                :options="options"
+                :options="allowedValues"
                 :is-invalid="props.isInvalid"
                 :is-focused="props.isFocused"
                 :is-loading="props.isLoading"
                 :placeholder="placeholder"
                 :append-to-body="appendToBody"
-                @input="props.input"
+                :normalizer="normalizer"
+                :is-clearable="isClearable"
+                :filter-predicate="filterPredicate"
+                @input="props.input;$emit('input',$event)"
+                @search-change="$emit('search-change',$event)"
                 @blur="props.blur"
                 @confirm="props.confirm"
                 @focus="props.focus"
-                @cancel="props.cancel"/>
+                @cancel="props.cancel">
+            <template v-slot:option="{option, isCurrent}">
+                <slot name="option" :option="option" :isCurrent="isCurrent"/>
+            </template>
+            <template v-slot:custom-action>
+                <slot name="custom-action"/>
+            </template>
+        </Select>
         <slot>
             <StringLineRenderer :value="value"/>
         </slot>
@@ -30,13 +42,20 @@
 
     export default {
         name: 'SingleSelectEditableRenderer',
-        components: { Select, StringLineRenderer, InlineEdit },
+        components: {
+            Select,
+            StringLineRenderer,
+            InlineEdit
+        },
         props: {
             editable: {
                 type: Boolean,
                 default: true
             },
-            value: { type: String, default: '' },
+            value: {
+                type: String,
+                default: ''
+            },
             allowedValues: {
                 type: Array,
                 default: () => []
@@ -52,12 +71,21 @@
             confirm: {
                 type: Boolean,
                 default: true
+            },
+            normalizer: {
+                type: Function,
+                default: null
+            },
+            icon: {
+                type: Boolean,
+                default: true
+            },
+            isClearable: {
+                type: Boolean
+            },
+            filterPredicate: {
+                type: Function
             }
-        },
-        data() {
-            return {
-                options: this.allowedValues
-            };
         },
         methods: {
             onSaveRequested(option, callback) {

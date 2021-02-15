@@ -150,6 +150,9 @@
         methods: {
             onInput(value) {
                 this.editingValue = value;
+                if (!this.confirm) {
+                    this.$nextTick(() => this.confirmEditedValue());
+                }
             },
             onBlur(event) {
                 if (!this.confirm) {
@@ -220,7 +223,10 @@
                 }
             },
             beforeTextFieldMount() {
-                const { width, height } = this.$refs.value.$el.getBoundingClientRect();
+                const {
+                    width,
+                    height
+                } = this.$refs.value.$el.getBoundingClientRect();
                 this.contentWidth = width;
                 this.contentHeight = height;
             },
@@ -238,19 +244,19 @@
     };
 </script>
 <style scoped>
-    .content-editable {
-        margin: -8px;
-    }
+.content-editable {
+  margin: -8px;
+}
 
-    .content-editable[compact] {
-        margin: -2px;
-    }
+.content-editable[compact] {
+  margin: -2px;
+}
 
-    input {
-        font-family: inherit;
-    }
+input {
+  font-family: inherit;
+}
 
-    input[align="end"] {
-        text-align: right;
-    }
+input[align="end"] {
+  text-align: right;
+}
 </style>
