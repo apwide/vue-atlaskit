@@ -175,6 +175,9 @@
             isDisabled: {
                 type: Boolean,
                 default: false
+            },
+            fixedSelectWidth: {
+                type: String
             }
         },
         data() {
@@ -185,7 +188,7 @@
                 currentSuggestionIndex: undefined,
                 currentWidth: INPUT_WIDTH,
                 isDirty: false,
-                selectWidth: 'auto',
+                selectWidth: this.fixedSelectWidth || 'auto',
                 draggedElement: undefined,
                 prevIndex: undefined,
                 nextIndex: undefined
@@ -290,7 +293,7 @@
                     this.$emit('close');
                 } else {
                     const { width } = this.$refs.target.getBoundingClientRect();
-                    this.selectWidth = `${width}px`;
+                    this.selectWidth = this.fixedSelectWidth || `${width}px`;
                     this.$emit('open');
                 }
             },
