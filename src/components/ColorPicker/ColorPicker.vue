@@ -1,6 +1,6 @@
 <template>
     <div ref="dropdown-container" class="color-picker">
-        <button type="button" :style="{cursor: this.editable ? 'pointer' : 'default'}" @click="onTriggerClick">
+        <button type="button" @click="onTriggerClick">
             <div class="color" :style="style"/>
         </button>
         <Popup :is-open="open" offset="0,8"
@@ -31,10 +31,6 @@
             colors: {
                 type: Array,
                 default: () => DefaultColors
-            },
-            editable: {
-                type: Boolean,
-                default: true
             }
         },
         data() {
@@ -57,9 +53,7 @@
         },
         methods: {
             onTriggerClick() {
-                if (this.editable) {
-                    this.open = !this.open;
-                }
+                this.open = !this.open;
             },
             onColorSelected(color) {
                 this.selected = color;
@@ -77,6 +71,7 @@ button {
     height: 30px;
     box-sizing: border-box;
     background-color: transparent;
+    cursor: pointer;
     border: 2px solid transparent;
     border-radius: 6px;
     transition: border-color 0.15s cubic-bezier(0.47, 0.03, 0.49, 1.38) 0s;
