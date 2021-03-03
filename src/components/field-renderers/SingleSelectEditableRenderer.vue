@@ -15,6 +15,7 @@
                 :normalizer="normalizer"
                 :is-clearable="isClearable"
                 :filter-predicate="filterPredicate"
+                :fixed-select-width="fixedSelectWidth"
                 @input="props.input;$emit('input',$event)"
                 @search-change="$emit('search-change',$event)"
                 @blur="props.blur"
@@ -85,6 +86,9 @@
             },
             filterPredicate: {
                 type: Function
+            },
+            fixedSelectWidth: {
+                type: String
             }
         },
         methods: {
