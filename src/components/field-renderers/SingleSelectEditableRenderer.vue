@@ -18,7 +18,7 @@
                 :fixed-select-width="fixedSelectWidth"
                 @input="props.input;$emit('input',$event)"
                 @search-change="$emit('search-change',$event)"
-                @blur="props.blur"
+                @blur="props.blur($event);$emit('blur', $event)"
                 @confirm="props.confirm"
                 @focus="props.focus"
                 @cancel="props.cancel">
